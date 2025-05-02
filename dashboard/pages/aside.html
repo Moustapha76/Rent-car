@@ -1,0 +1,50 @@
+<?php
+if(isset($_GET['p']) && !empty($_GET['p'])){
+    $p = $_GET['p'];
+}
+?>
+<aside class="sidebar">
+    <div id="leftside-navigation" class="nano">
+      <a class="logo" href="?p=index" class="logo"><b>Law</b>Corp.</a>
+      <ul class="nano-content">
+        <li>
+          <a class="<?php if($p=='profil'){echo 'active';} ?>" href="?p=profil"><i class="fa-solid fa-user"></i><span>Profil</span></a>
+        </li>
+        <li class="sub-menu">
+          <a class="" href="javascript:void(0);"><i class="fa fa-cogs"></i><span>Pages</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+          <ul>          
+            <li><a class="<?php if($p=='accueil'){echo 'active';} ?>" href="?p=accueil">Accueil</a></li>
+            <li><a class="<?php if($p=='presentation'){echo 'active';} ?>" href="?p=presentation">Présentation</a></li>
+            <li><a class="<?php if($p=='galerie'){echo 'active';} ?>" href="?p=galerie">Galerie</a></li>
+            <li><a class="<?php if($p=='contact'){echo 'active';} ?>" href="?p=contact">Contact</a></li>
+          </ul>
+        </li>
+        <li class="sub-menu"><a class="<?php if($p=='serviceList'){echo 'active';} ?>" href="?p=serviceList"><i class="fa-solid fa-scale-balanced"></i><span>Services</span></a></li>
+        <li class="sub-menu">
+          <a class="<?php if($p=='leads'){echo 'active';} ?>" href="?p=leads"><i class="fa fa-envelope"></i><span>Leads</span></a>
+        </li>
+        <li class="sub-menu"><a class="<?php if($p=='actu'){echo 'active';} ?>" href="javascript:void(0);"><i class="fa-solid fa-newspaper"></i><span>Actualités</span></a></li>
+        <li class="sub-menu">
+          <a class="" href="javascript:void(0);"><i class="fa fa-table"></i><span>Statistiques</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+          <ul>
+            <li><a class="<?php if($p=='visits'){echo 'active';} ?>" href="?p=visits">Visites</a></li>
+            <li><a class="<?php if($p=='clics'){echo 'active';} ?>" href="?p=clics">Clics</a></li>
+          </ul>
+        </li>
+        <li class="sub-menu">
+          <a class="" href="javascript:void(0);"><i class="fa fa-cogs"></i><span>Configurations</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+          <ul>
+            <li><a class="<?php if($p=='blocks'){echo 'active';} ?>" href="?p=blocks">Blocks</a></li>
+            <li><a class="<?php if($p=='setting'){echo 'active';} ?>" href="?p=setting">Paramètres</a></li>
+          </ul>
+        </li>
+        <li class="sub-menu">
+          <a class="" href="?p=newsletter"><i class="fa-regular fa-envelope-open"></i><span>Newsletter</span></a>
+        </li>
+        <li class="sub-menu"><a class="<?php if($p=='abonnement'){echo 'active';} ?>" href="?p=abonnement"><i class="fa-solid fa-magnifying-glass-chart"></i><span>Abonnement</span></a></li>
+        <li class="sub-menu"><a class="<?php if($p=='parrainage'){echo 'active';} ?>" href="?p=parrainage"><i class="fa-solid fa-people-robbery"></i><span>Parrainage</span></a></li>
+        <li class="sub-menu"><a class="<?php if($p=='faq'){echo 'active';} ?>" href="?p=faq"><i class="fa-solid fa-circle-question"></i><span>Faq</span></a></li>
+        <li class="sub-menu"><a class="<?php if($p=='disconnect'){echo 'active';} ?>" href="?p=disconnect"><i class="fa-solid fa-right-from-bracket"></i><span>Déconnexion</span></a></li>
+      </ul>
+    </div>
+</aside>

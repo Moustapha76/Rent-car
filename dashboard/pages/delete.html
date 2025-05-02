@@ -1,0 +1,9 @@
+<?php
+    // Tip : PHP don't show sql error
+    include "connexion.html";
+    $id = $_GET['id'];
+    $req = $bdd->prepare("UPDATE leads SET archive = '1' WHERE id = ?");
+    $req->execute(array($id));
+    
+    header("location:outil.html?p=lead&action=success");
+?>

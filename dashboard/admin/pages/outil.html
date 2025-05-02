@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../../public/css/admin.css">
+</head>
+<body>
+    <!-- <div class="loader"><img src="../../public/images/loader.gif" alt=""></div> -->
+    <div class="container-body">
+    <header>
+        <?php include 'aside.html'; ?>
+    </header>
+    <nav>
+        <ul>
+            <li><a target="__blank" href="../../index.html" title="Aller sur le site"><i class="fa-solid fa-eye"></i>Visiter le site</a></li>
+            <li><a target="__blank" href="../../index.html" title="Aller sur le site">Déconnexion <i class="fa-solid fa-right-from-bracket"></i></a></li>
+        </ul>
+    </nav>
+    <main>
+        <?php
+        $alert = "";
+        if(isset($_GET['p']) && $_GET['p'] == 'banner' && $_GET['action'] == 'ras'){$alert="Les informations ont été mises à jour.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'addService' && $_GET['action'] == 'ras'){$alert="Les informations ont été mises à jour.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'accueil' && $_GET['action'] == 'ras'){$alert="Les informations ont été mises à jour.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'presentation' && $_GET['action'] == 'ras'){$alert="Les informations ont été mises à jour.";} 
+        if(isset($_GET['p']) && $_GET['p'] == 'setting' && $_GET['action'] == 'ras'){$alert="Les informations ont été mises à jour.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'lead' && $_GET['action'] == 'success'){$alert="Lead supprimé avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'banner' && $_GET['action'] == 'extension'){$alert="L'extension du fichier n'est pas pris en charge.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'banner' && $_GET['action'] == 'taille'){$alert="L'image est trop lourde.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'banner' && $_GET['action'] == 'success'){$alert="Bandeau ajouté avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'addService' && $_GET['action'] == 'success'){$alert="Service ajouté avec succès";}
+        if(isset($_GET['p']) && $_GET['p'] == 'addService' && $_GET['action'] == 'delsuccess'){$alert="Service supprimé avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'actu' && $_GET['action'] == 'delsuccess'){$alert="L'article a été supprimé avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'galery' && $_GET['action'] == 'ras'){$alert="Image ajoutée avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'updateArticle' && $_GET['action'] == 'ras'){$alert="L'article a été mis à jour avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'updateArticle' && $_GET['action'] == 'success' && $_GET['id'] == 'add'){$alert="L'article a été ajouté avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'actu' && $_GET['action'] == 'success' && $_GET['opt'] == 'category'){$alert="La catégorie a été ajoutée avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'actu' && $_GET['action'] == 'delsuccess' && $_GET['opt'] == 'category'){$alert="La catégorie a été supprimée avec succès.";}
+        
+        if(!empty($alert)){ ?>
+        <div class="alerte"><?= $alert ?> <a class="fermer"><i class="fa-solid fa-xmark"></i></a></div><?php
+        }
+        include 'main.html'; 
+        ?>
+    </main>
+    </div>
+    <script>
+        let fermer = document.querySelector('.fermer');
+        fermer.addEventListener('click',()=>{
+            document.querySelector('.alerte').classList.add('hidden');
+        })
+    </script>
+      <!-- <script>
+            tinymce.init({
+                selector: 'textarea#premiumskinsandicons-fluent',
+                language: 'fr_FR',  // Spécifiez la langue française
+                skin: 'fluent',
+                content_css: 'fluent',
+                toolbar_mode: 'floating',
+                plugins: 'advlist anchor autolink charmap code codesample directionality help image editimage insertdatetime link lists media nonbreaking pagebreak preview searchreplace table tableofcontents visualblocks visualchars wordcount',
+                toolbar: 'undo redo | blocks | bold italic strikethrough forecolor backcolor blockquote | link image media | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat | code | table ',
+                height: 400
+            });
+        </script> -->
+    <script>
+    tinymce.init({
+        selector: 'textarea#premiumskinsandicons-fluent',
+        language: 'fr_FR',  // Spécifiez la langue française
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat | code',
+    });
+    </script>
+    <!-- <script src="../../public/js/pagination.js"></script> -->
+
+    <script src="../../public/js/jquery-2.2.1.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/5ld0qnfhpkpso3i5ls4n3czm1jk2fhiv80gm4o6feeuh14ku/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+</body>
+</html>

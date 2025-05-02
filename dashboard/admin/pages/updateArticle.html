@@ -1,0 +1,76 @@
+<?php
+    include 'connexion.html';
+    if(isset($_GET['id'])){
+        $req = $bdd->prepare('SELECT * FROM articles WHERE id = ?');
+        $req->execute(array($_GET['id']));
+        $articles = $req->fetchAll();
+        $id = $articles[0]['id'];
+        $title = $articles[0]['titre'];
+        $content = $articles[0]['contenu'];
+        $categorieID = $articles[0]['categorieID'];
+        $img = $articles[0]['file'];
+    }
+    $cat = $bdd->query('SELECT * FROM categories');
+    $categories = $cat->fetchAll();
+    $categorieList = [''];
+    foreach($categories as $value) {
+        array_push($categorieList, $value['categorie']);
+    }
+
+?>
+<section id="service">
+    <?php include 'menu-blog.html'; ?>
+    <div class="addService bloc-contain">
+        <h4 class="title">
+            <?php if(isset($id)) echo 'Article &nbsp;N&deg;'.$id; else echo "Ajout d'un article"; ?>
+            <?php
+            if(isset($id)){ ?>
+                <a class="btn btn-danger" href="deleteArticle.html?id=<?= $id ?>" onclick="return(confirm('Voulez-vous supprimer cet article ?'))">Supprimer <i class="fa-solid fa-trash"></i></a>
+            <?php }
+            ?>
+        </h4><br>
+        <form action="<?php if(isset($id)) echo 'saveArticle.html?id='.$id; else {echo "saveArticle.html";} ?>" method="POST" enctype="multipart/form-data">
+            <div class="infos">
+               <div class="group-addon">
+                   <div class="input-group">
+                        <label for="titre">Titre</label>
+                        <input type="text" id="titre" name="title" class="titre" value="<?php if(isset($title)) echo $title; else echo 'Titre'; ?>" />
+                    </div>
+                    <div class="input-group">
+                        <label for="categorie">Catégorie</label>
+                        <?php if(isset($categorieID)){?>
+                        <input type="text" id="categorie" name="categorie" class="categorie" value="<?= $categorieList[$categorieID] ?>"  disabled/>
+                        <?php }else{?>
+                        <select name="categorie" id="categorie">
+                            <?php foreach($categories as $categorie){ ?>
+                            <option value="<?= $categorie['categorie'] ?>"><?= $categorie['categorie'] ?></option>
+                            <?php } ?>
+                        </select>
+                        <?php } ?>
+                    </div>
+               </div>
+                <div class="input-group">
+                    <label for="premiumskinsandicons-fluent">Contenu</label>
+                    <textarea name="content" id="premiumskinsandicons-fluent" cols="50" rows="10"><?php if(isset($content)) echo $content; else echo 'Site en cours d\'enrichissement...'; ?></textarea>
+                </div>
+                <input type="submit" class="btn btn-primary" value="<?php if(isset($id)) echo "Sauvegarder"; else echo "Ajouter"; ?>"/>
+            </div>
+            <div class="upload-box">
+                <div class="upload-img">
+                    <img id="preview" src="<?php if(isset($img)) echo $img; else echo "../../public/images/upload.png"; ?>" alt="image de l'article">
+                </div>
+                <label for="imgArticle" class="btn btn-primary"><?php if(isset($img)) echo "Modifier l'image"; else echo "Téléverser une image"; ?></label>
+                <input type="file" id="imgArticle" name="imgArticle"/>
+            </div>
+        </form>
+    </div>
+</section>
+<script>
+var imgService = document.querySelector("#imgArticle");
+var preview = document.querySelector("#preview");
+imgService.addEventListener('change', function(e) {
+    if (e.target.files.length > 0) {
+        const url = URL.createObjectURL(e.target.files[0]);
+        preview.src = url;
+    }
+})</script>

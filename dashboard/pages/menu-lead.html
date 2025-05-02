@@ -1,0 +1,33 @@
+<?php
+function addZero($number){
+    if($number < 10){
+        return '0'.$number;
+    }
+    return $number;
+}
+    include('connexion.html'); 
+    $req = $bdd->prepare("SELECT * FROM leads ORDER BY 'jour' DESC");
+    $req->execute();
+    $all_leads = $req->fetchAll();
+    $leads = addZero(count($all_leads));
+    
+    $req = $bdd->prepare("SELECT * FROM leads WHERE vu = 1");
+    $req->execute();
+    $all_leads_lus = $req->fetchAll();
+    $leads_lus = addZero(count($all_leads_lus));
+
+    $req = $bdd->prepare("SELECT * FROM leads WHERE archive = 1");
+    $req->execute();
+    $all_leads_supprimes = $req->fetchAll();
+    $leads_supprimes = addZero(count($all_leads_supprimes));
+
+    $leads_non_lus = addZero(count($all_leads) - count($all_leads_lus));
+
+?>
+
+<div class="menu-top">
+    <div class="card"><i class="fa-regular fa-envelope"></i><span><?php echo $leads; ?></span>Leads</div>
+    <div class="card"><i class="fa-regular fa-envelope-open"></i><span><?php echo $leads_lus; ?></span>Leads lus</div>
+    <div class="card"><i class="fa-solid fa-eye-slash"></i><span><?php echo $leads_non_lus; ?></span>Leads non lus</div>
+    <div class="card"><i class="fa-solid fa-trash"></i><span><?php echo $leads_supprimes; ?></span> Leads supprimés</div>
+</div>

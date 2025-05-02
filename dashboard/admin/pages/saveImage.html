@@ -1,0 +1,49 @@
+
+<?php
+include "connexion.html";
+if(isset($_POST['okgalery'])) {
+    if(isset($_FILES['images'])){
+    foreach($_FILES['images']['name'] as $key => $name) {
+        if($_FILES['images']['size'][$key] <= 2000000){
+            $infosimg = pathinfo($_FILES['images']['name'][$key]);
+            $extension = $infosimg['extension'];
+            $filename = $_FILES['images']['name'][$key];
+            $extensions_autorisees = array('jpg', 'jpeg', 'png');
+            if(in_array($extension, $extensions_autorisees)){
+                $tmpname = $_FILES['images']['tmp_name'][$key];
+                $filepath = '../../public/images/galery/'.$name;
+                // Déplacer le fichier uploadé dans le dossier de destination
+                if(move_uploaded_file($tmpname, $filepath)) {
+                    // Insérer l'image dans la base de données
+                    $req = $bdd->prepare('INSERT INTO galerie (filename, filepath, lastupdate) VALUES (?, ?, NOW())');
+                    $req->execute(array($filename, $filepath));
+                } 
+            }else {header("location:./outil.html?p=galery&action=extension");}
+        }else{header("location:./outil.html?p=galery&action=taille");}
+    }header("location:./outil.html?p=galery&action=ras");
+    }else{header("location:./outil.html?p=galery&action=erreur");}
+}
+else{header("location:./outil.html?p=galery");}
+
+
+// if(isset($_FILES['images']) AND $_FILES['images']['error'] == 0){
+
+//     if ($_FILES['images']['size'] <= 2000000){
+//                $infosimg = pathinfo($_FILES['images']['name']);
+//                $extension = $infosimg['extension'];
+//                $filename = sha1($_FILES['images']['name']).'.'.$extension;
+//                $extensions_autorisees = array('jpg', 'jpeg', 'png');
+//             // $path = "C:/xampp/htdocs/ERP/public/images/produits/". basename($_FILES['images']['name']);
+//                $file_path = "../../public/images/services".$filename;
+//                if(in_array($extension, $extensions_autorisees)){
+//                    move_uploaded_file($_FILES['images']['tmp_name'],$file_path);
+                    
+//                    // Insérer le chemin du fichier dans la base de données
+//                     $req = $bdd->prepare('INSERT INTO galerie (filename, filepath, lastupdate) VALUES (?, ?, NOW())');
+//                     $req->execute(array($fileName, $filePath));
+//                    header('location:./outil.html?p=galery&action=ras');
+//                }else{ header("Location:./outil.html?p=galery&action=extension"); }
+//            }else{ header("location:./outil.html?p=galerys&action=taille"); }
+//    }
+   
+//    else{header("Location: ./outil.html?p=galery&action=erreur");}

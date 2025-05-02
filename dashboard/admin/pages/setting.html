@@ -1,0 +1,69 @@
+<?php
+include "connexion.html";
+// users
+$datas = $bdd->query('SELECT * FROM users');
+$users = $datas->fetchAll();
+$user = $users[0];
+// user infos
+$user_name = $user['rs'];
+$user_tel = $user['tel'];
+$user_email = $user['email'];
+$user_pwd = $user['pwd'];
+$user_horaires = $user['horaires'];
+$user_login = $user['pseudo'];
+$user_adress = $user['adress'];
+?>
+<section id="setting">
+    <div class="setting-options">
+        <form action="saveInfo.html" method="POST">
+            <div class="bloc-infos">
+                <div id="profil">
+                    <h2>Mon profil</h2>
+                    <div class="grid-items">
+                        <div class="input-group">
+                            <label for="username">Raison sociale</label>
+                            <input type="text" id="username" name="rs" value="<?= $user_name ?>">
+                        </div>
+                        <div class="input-group">
+                            <label for="telephone">Téléphone</label>
+                            <input type="text" name="tel" value="<?= $user_tel ?>">
+                        </div>
+                    </div>
+                    <div class="grid-items">
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input type="text" id="email" name="email" value="<?= $user_email ?>">
+                        </div>
+                        <div class="input-group">
+                            <label for="adress">Adresse</label>
+                            <input type="text" id="adress" name="adress" value="<?= $user_adress ?>">
+                        </div>
+                    </div>
+                </div>
+                <div id="securite">
+                    <h2>Sécurité</h2>
+                    <div class="grid-items">
+                    <div class="input-group">
+                            <label for="pseudo">Login</label>
+                            <input type="text" id="pseudo" name="pseudo" value="<?= $user_login ?>">   
+                        </div>
+                        <div class="input-group">
+                            <label for="pwd">Mot de passe</label>
+                            <input type="password" id="pwd" name="pwd" value="<?= $user_pwd ?>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bloc-infos">
+                <h2>informations supplémentaires</h2>
+                <div class="grid-items">
+                    <div class="input-group">
+                        <label for="horaires">Horaires d'ouverture</label>
+                        <textarea name="horaires" rows="10" id="horaires"><?= $user_horaires ?></textarea>
+                    </div>
+                </div>
+                <input type="submit" value="Valider" name="okUser" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</section>

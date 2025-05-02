@@ -1,0 +1,17 @@
+<?php
+include "connexion.html";
+if(isset($_GET['idc'])){
+  // supprimer une catégorie
+  $idc = strip_tags($_GET['idc']);
+  $req = $bdd->prepare('DELETE FROM categories WHERE categorieID = ?');
+  $req->execute(array($idc));
+  header("location:./outil.html?p=actu&opt=category&action=delsuccess");
+
+}
+else{
+  // supprimer un article
+  $ida = strip_tags($_GET['ida']);
+  $req = $bdd->prepare('DELETE FROM articles WHERE id = ?');
+  $req->execute(array($ida)); 
+  header("location:./outil.html?p=actu&opt=articleList&page=1&action=delsuccess");
+}

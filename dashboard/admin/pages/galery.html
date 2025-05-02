@@ -1,0 +1,28 @@
+<?php
+    include('connexion.html'); 
+    $req = $bdd->prepare("SELECT * FROM galerie ORDER BY lastupdate DESC");
+    $req->execute();
+    $images = $req->fetchAll();
+?>
+<section id="galery">
+    <div class="upload-container">
+        <form action="saveImage.html" method="post" enctype="multipart/form-data">
+            <label for="images">Sélectionner des images :</label>
+            <input type="file" name="images[]" id="images" multiple>
+            <input type="submit" value="Valider" name="okgalery">
+        </form>
+    </div>
+    <div class="galerie-photos">
+        <form action="saveImage.html" method="post" enctype="multipart/form-data">
+            <?php foreach($images as $image){ ?>
+            <div class="item-photo">
+                <label for="<?= $image['id'] ?>">
+                    <img src="<?=$image['filepath']?>" alt="<?=$image['filename']?>" title="<?=$image['filename']?>">
+                </label>
+                <input type="checkbox" name="<?= $image['id'] ?>" id="<?= $image['id'] ?>">
+            </div>
+            <?php } ?>
+            <input type="submit" value="Valider" name="okdelete">
+        </form>
+    </div>
+</section>

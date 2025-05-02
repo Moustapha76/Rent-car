@@ -1,0 +1,19 @@
+<?php 
+include "connexion.html";
+if (isset($_POST['ok'])){
+    $title = $_POST['title'];
+    $subtitle = $_POST['subtitle'];
+    $content = $_POST['contenu'];
+    $req = $bdd->prepare('UPDATE textContent SET title = ?, subtitle = ?, contenu = ? WHERE id = 1');
+    $req->execute(array($title,$subtitle,$content));
+    header("location:./outil.html?p=accueil&action=ras");
+}
+if (isset($_POST['ok2'])){
+    $title = $_POST['title'];
+    $subtitle = $_POST['subtitle'];
+    $content = $_POST['contenu'];
+    $req = $bdd->prepare('UPDATE textContent SET title = ?, subtitle = ?, contenu = ? WHERE id = 2');
+    $req->execute(array($title,$subtitle,$content));
+    header("location:./outil.html?p=presentation&action=ras");
+}
+?>

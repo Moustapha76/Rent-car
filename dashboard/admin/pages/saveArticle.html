@@ -1,0 +1,53 @@
+<?php
+include('connexion.html');
+if(isset($_GET['option'])){
+    $categorieName = $_POST['categorie'];
+    $query = $bdd->prepare('INSERT INTO categories (categorie) VALUES (?)');
+    $query->execute(array($categorieName));
+    header('location:./outil.html?p=actu&opt=category&action=success');
+}
+else{
+$id='add';
+if(isset($_GET['id']) && !empty($_GET['id'])){
+    $id = strip_tags($_GET['id']);
+}
+$title = $_POST['title'];
+$content = $_POST['content'];
+if(isset($_FILES['imgArticle']) AND $_FILES['imgArticle']['error'] == 0){
+    if($_FILES['imgArticle']['size'] <= 2000000){
+        $infosimgArticle = pathinfo($_FILES['imgArticle']['name']);
+        $extension = $infosimgArticle['extension'];
+        $filename = sha1($_FILES['imgArticle']['name']).'.'.$extension;
+        $extensions_autorisees = array('jpg', 'jpeg', 'png');
+        // $path = "C:/xampp/htdocs/ERP/public/images/produits/". basename($_FILES['imgArticle']['name']);
+        $file_path = "../../public/images/actu/".$filename;
+        if(in_array($extension, $extensions_autorisees)){
+            move_uploaded_file($_FILES['imgArticle']['tmp_name'],$file_path);
+            if(isset($_GET['id'])){
+                $req = $bdd->prepare('UPDATE articles SET titre = ?, contenu = ?, file = ? WHERE id = ?');
+                $req->execute(array($title,$content,$file_path,$id));
+            }
+            else{
+                $req = $bdd->prepare('INSERT INTO articles (titre,contenu,file) VALUES(?,?,?)');
+                $req->execute(array($title,$content,$file_path));
+            }
+            header('location:./outil.html?p=updateArticle&id='.$id.'&action=success');
+        }else{ header("location:./outil.html?p=updateArticle&id=$id&action=extension"); }
+    }else{ header("location:./outil.html?p=updateArticle&id=$id&action=taille"); }
+}
+elseif(isset($_GET['id'])){
+    $req = $bdd->prepare('UPDATE articles SET titre = ?, contenu = ? WHERE id = ?');
+    $req->execute(array($title,$content,$id));
+    header("location:./outil.html?p=updateArticle&id=$id&action=ras");
+}
+else{header("location:./outil.html?p=updateArticle&id=$id&action=erreur");}
+}
+?>
+
+<!-- CREATE TABLE service (
+    id int PRIMARY KEY,
+    title varchar(255),
+    subtitle varchar(255),
+    img_service varchar(255),
+    content varchar(255),
+); -->

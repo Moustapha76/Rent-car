@@ -1,0 +1,112 @@
+<section class="articleview">
+<div class="list-actu">
+<?php include 'menu-blog.html'; ?>
+<?php
+include "connexion.html";
+$req = $bdd->query('SELECT * FROM articles');
+$articles = $req->fetchAll();
+$numberOfArticles = sizeOf($articles);
+$articlesPerPage = 10;
+$pages = ceil($numberOfArticles / $articlesPerPage);
+$p = $_GET['page'];
+
+try {
+    if(isset($_GET['opt'])){
+  
+    // liste des catégories
+    if($_GET['opt'] == 'category'){
+        $cat = $bdd->query('SELECT * FROM categories');
+        $categories = $cat->fetchAll();
+    ?>
+        <form action="saveArticle.html?option=saveCategory" method="post" class="formcat">
+                <label for="cat">Ajouter une catégorie</label>
+                <div class="flex">
+                <input type="text" id="cat" name="categorie" placeholder="Veuillez saisir le nom de la catégorie">
+                <input type="submit" value="Ajouter la catégorie" class="btn btn-primary">
+                </div>
+        </form>
+        <table class="table">
+            <thead>
+                <th>Nom de la Catégorie</th>
+                <th colspan=2></th>
+            </thead>
+            <tbody>
+                <?php foreach ($categories as $key => $categorie) { ?>
+                <tr>
+                    <td><?= $categorie['categorie']?></td>
+                    <td class="option" title="Voir tous les articles"><a href="outil.html?p=actu&idc=<?=$categorie['categorieID']?>"><i class="fa-solid fa-eye"></i></a></td>
+                    <td class="option" title="Supprimer la catégorie"><a href="deleteArticle.html?idc=<?=$categorie['categorieID']?>" onclick="return(confirm('Voulez-vous supprimer cette catégorie ?'))"><i class="fa-solid fa-trash"></i></a></td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    <?php }
+
+    // liste des articles
+    if($_GET['opt'] == 'articleList'){    
+    ?>
+    <table class="table">
+        <thead>
+            <th></th>
+            <th>Titre</th>
+            <th>Date de publication</th>
+            <th colspan=3>Actions</th>
+        </thead>
+        <tbody>
+            <?php foreach($articles as $key => $article){ 
+                 if ($key >= (($p - 1) * 10) && $key < ($p * 10)) {
+              $titre = $article['titre'];
+              $img = $article['file'];
+              $id = $article['id'];
+              $pub = $article['pub'];
+            ?>
+            <tr>
+                <td class="img"><?php echo "<img src='$img' alt='$titre'>";?></td>
+                <td><?=$titre?></td>
+                <td><?=$pub?></td>
+                <td class="option" title="Voir l'article"><a href="outil.html?p=actu&id=<?=$id?>"><i class="fa-solid fa-eye"></i></a></td>
+                <td class="option" title="Modifier l'article"><a href="outil.html?p=updateArticle&id=<?=$id?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                <td class="option" title="Supprimer l'article"><a href="deleteArticle.html?ida=<?=$id?>" onclick="return(confirm('Voulez-vous supprimer cet article ?'))"><i class="fa-solid fa-trash"></i></a></td>
+            </tr>
+            <?php }
+            }
+            ?>
+        </tbody>
+    </table>
+    <div id="pagination">';
+        <?php for ($i = 1; $i <= $pages; $i++) {
+            $isActive = '';
+            if($i==$p) $isActive = 'active';
+            echo "<a class='$isActive' href='./outil.html?p=actu&opt=articleList&page=$i'>$i</a>";
+        }?>
+    </div>
+    <?php 
+    }
+
+    // Ajout d'un article
+    if($_GET['opt'] == 'addArticle'){}
+
+    // Affichage d'un article
+    }elseif(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $datas = $bdd->prepare('SELECT * FROM articles WHERE id=?');
+        $datas->execute(array($id));
+        $dat = $datas->fetchAll();
+?>
+        <div class="article">
+            <img src="<?=$dat[0]['file'] ?>" alt="<?= $dat[0]['titre'] ?>">
+            <div class="describeArticle">
+                <h2><?= $dat[0]['titre'] ?></h2>
+                <?= $dat[0]['contenu'] ?>
+                <small><b>Date de publication : </b><?=$dat[0]['pub']?></small>
+            </div>
+        </div>
+        <a href="outil.html?p=actu&opt=articleList&page=1" class="btn btn-default">Retour à la liste</a>
+
+<?php
+    } 
+}
+    catch (Error $e) {
+    die("Attention! n'entrez pas n'importe quoi");
+}?>
+</section>

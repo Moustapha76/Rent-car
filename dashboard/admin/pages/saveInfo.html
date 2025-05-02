@@ -1,0 +1,17 @@
+<?php
+include "connexion.html";
+if(isset($_POST['okUser'])){
+    $username = $_POST['rs'];
+    $usertel = $_POST['tel'];
+    $useremail = $_POST['email'];
+    $userpwd = $_POST['pwd'];
+    $userhoraires = $_POST['horaires'];
+    $userlogin = $_POST['pseudo'];
+    $useradress = $_POST['adress'];
+    $req = $bdd->prepare('UPDATE users SET rs = ?, email = ?, adress = ?, tel = ?, pwd = ?, horaires = ?, pseudo = ? WHERE id = 1');
+    $req->execute(array($username,$useremail,$useradress,$usertel,$userpwd,$userhoraires,$userlogin));
+    header("location:outil.html?p=setting&action=ras");
+}
+else{
+    header("location:outil.html?p=setting&action=error");
+}    

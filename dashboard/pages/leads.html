@@ -1,0 +1,46 @@
+<?php
+    include('connexion.html'); 
+    $req = $bdd->prepare("SELECT * FROM leads ORDER BY 'jour' DESC");
+    $req->execute();
+    $myleads = $req->fetchAll();
+?>
+<section class="leads">
+<?php include 'menu-lead.html'; ?>
+<table id="leads" class="display dark stripe" style="width:100%">
+  <thead>
+      <tr>
+          <th class="membre">Nom</th>
+          <th>Téléphone</th>
+          <th>Email</th>
+          <th>Message</th>
+          <th>Date</th>
+          <th>Statut</th>
+          <th>Corbeille</th>
+          <th>Ouvrir</th>
+      </tr>
+  </thead>
+  <tbody>
+      <?php foreach($myleads as $lead){ 
+        if($lead['archive'] == 1){continue;}
+        ?>
+        <tr>
+          <td class="membre"><?=$lead['nom']?></td>
+          <td><?=$lead['tel']?></td>
+          <td><?=$lead['email']?></td>
+          <td><?=$lead['msg']?></td>
+          <td><?=$lead['jour']?></td>
+          <td class="statut <?php if($lead['vu'] == 1) echo 'read'; else echo 'wait'; ?>"><?php if($lead['vu'] == 1) echo 'lu <i class="fa-solid fa-square-check"></i>'; else echo 'Non lu <i class="fa-solid fa-eye"></i>'?></td>
+          <td class="archive">
+          <?php if($lead['archive'] == 1){
+                  echo 'Lead supprimé';
+              }else{ ?>
+                  <a href="delete.html?id=<?php echo $lead['id']; ?>" onclick="return(confirm('Voulez-vous supprimer ce message ?'))">Supprimer <i class="fa-solid fa-trash"></i></a>
+              <?php } ?>
+          </td>
+          <td class="statut"><a href="outil.html?p=displayLead&id=<?php echo $lead['id']; ?>" title="Voir le message">Ouvrir <i class="fa-solid fa-eye"></i></a></td>
+        </tr>
+      <?php } ?>
+  </tbody>
+</table>
+</section>
+

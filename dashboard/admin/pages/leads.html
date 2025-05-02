@@ -1,0 +1,46 @@
+<?php
+    include('connexion.html'); 
+    $req = $bdd->prepare("SELECT * FROM leads ORDER BY 'jour' DESC");
+    $req->execute();
+    $leads = $req->fetchAll();
+?>
+<section id="lead">
+    <h2>Liste des leads</h2>
+    <table class="table" id="myTable">
+        <thead>
+            <th>Nom</th>
+            <th>Téléphone</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Statut</th>
+            <th colspan="2"></th>
+        </thead>
+        <tbody>
+        <?php
+        foreach($leads as $lead){
+        ?>
+        <tr>
+            <td><?=$lead['nom']?></td>
+            <td><?=$lead['tel']?></td>
+            <td><?=$lead['email']?></td>
+            <td><?=$lead['jour']?></td>
+            <td><?php if($lead['vu'] == 1) echo 'lu <i class="fa-solid fa-square-check"></i>'; else echo 'Non lu'?></td>
+            <td class="option"><a href="outil.html?p=displayLead&id=<?php echo $lead['id']; ?>"><i class="fa-solid fa-eye"></i></a></td>
+            <td class="option">
+                <?php if($lead['archive'] == 1){
+                    echo 'Supprimé';
+                }else{ ?>
+                    <a href="delete.html?id=<?php echo $lead['id']; ?>" onclick="return(confirm('Voulez-vous supprimer ce message ?'))"><i class="fa-solid fa-trash"></i></a>
+                <?php } ?>
+            </td>
+        </tr>
+        <?php 
+        }
+        ?>
+        </tbody>
+    </table>
+    <div class="row">
+        <span class="left" id="total_reg"></span>
+        <ul class="pagination pager" id="myPager"></ul>
+    </div>
+</section>

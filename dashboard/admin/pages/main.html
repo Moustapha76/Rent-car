@@ -1,0 +1,19 @@
+<?php
+if (isset($_GET['p'])) {
+    $url = $_GET['p'];
+    $opt = $_GET['opt'];
+    if ($url == 'banner') {include("banner.html");}
+    elseif ($url == 'addService') {include("addService.html");} 
+    elseif ($url == 'serviceList') {include("serviceList.html");} 
+    elseif ($url == 'displayLead') {include("displayLead.html");}
+    elseif ($url == 'setting') {include("setting.html");}
+    elseif ($url == 'accueil') {include("accueil.html");}
+    elseif ($url == 'presentation'){include("accueil.html");}
+    elseif ($url == 'actu'){include("blog.html");}
+    // elseif ($url == 'actu' && $opt == 'addArticle'){include("updateArticle.html");}
+    elseif ($url == 'galery'){include("galery.html");}
+    elseif ($url == 'updateArticle'){include("updateArticle.html");}
+    else{include("leads.html");} 
+} else {header("location:outil.html");} 
+// internal error in server due to escape after location
+?>

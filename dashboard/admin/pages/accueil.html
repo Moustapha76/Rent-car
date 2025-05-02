@@ -1,0 +1,53 @@
+<?php 
+include "connexion.html";
+// Textcontent
+if(isset($_GET['p']) && !empty($_GET['p'])){
+    $p = $_GET['p'];
+}
+$textContent = $bdd->query('SELECT * FROM textContent');
+$pages = $textContent->fetchAll();
+$home = $pages[0];
+$presentation = $pages[1];
+?>
+<?php if($p == 'accueil'){ ?>
+<section id="accueil">
+    <form action="./savePage.html" method="POST">
+        <div class="input-group">
+            <label for="title">Titre de la page</label>
+            <input type="text" id="title" name="title" value="<?= $home['title'] ?>">
+        </div>
+        <div class="input-group">
+            <label for="subtitle">Sous-titre de la page</label>
+            <input name="subtitle" type="text" id="subtitle" value="<?= $home['subtitle'] ?>">
+        </div>
+        <div class="input-group">
+            <label for="premiumskinsandicons-fluent">Contenu</label>
+            <div class="my-custom-editor-container">
+                <textarea id="premiumskinsandicons-fluent" name="contenu"><?= $home['contenu'] ?></textarea>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" name="ok" value="Valider">
+    </form>
+</section>
+<?php } ?>
+<?php if($p == 'presentation'){ ?>
+<section id="presentation">
+    <form action="./savePage.html" method="POST">
+        <div class="input-group">
+            <label for="title">Titre de la page</label>
+            <input type="text" id="title" name="title" value="<?= $presentation['title'] ?>">
+        </div>
+        <div class="input-group">
+            <label for="subtitle">Sous-titre de la page</label>
+            <input name="subtitle" type="text" id="subtitle" value="<?= $presentation['subtitle'] ?>">
+        </div>
+        <div class="input-group">
+            <label for="premiumskinsandicons-fluent">Contenu</label>
+            <div class="my-custom-editor-container">
+                <textarea id="premiumskinsandicons-fluent" name="contenu"><?= $presentation['contenu'] ?></textarea>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" name="ok2" value="Valider">
+    </form>
+</section>
+<?php } ?>

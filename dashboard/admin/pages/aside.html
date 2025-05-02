@@ -1,0 +1,20 @@
+<?php
+if(isset($_GET['p']) && !empty($_GET['p'])){
+    $p = $_GET['p'];
+}
+?>
+<div class="sidebar">
+    <h1>Tableau de bord</h1>
+    <ul>
+        
+        <li><a class="<?php if($p=='leads'){echo 'active';} ?>" href="?p=leads"><i class="fa-solid fa-envelope"></i>Mes leads</a></li>
+        <li><a class="<?php if($p=='banner'){echo 'active';} ?>" href="?p=banner&pageID=1"><i class="fa-solid fa-crop-simple"></i>Bandeaux</a></li>
+        <li><a class="<?php if($p=='accueil'){echo 'active';} ?>" href="?p=accueil"><i class="fa-solid fa-house"></i>Accueil</a></li>
+        <li><a class="<?php if($p=='presentation'){echo 'active';} ?>" href="?p=presentation"><i class="fa-solid fa-pen-to-square"></i>Présentation</a></li>
+        <li><a class="<?php if($p=='galery'){echo 'active';} ?>" href="?p=galery"><i class="fa-solid fa-image"></i>Galerie</a></li>
+        <li><a class="<?php if($p=='actu' || $p=='updateArticle'){echo 'active';} ?>" href="?p=actu&opt=articleList&page=1"><i class="fa-solid fa-newspaper"></i> Actualité</a></li>
+        <li><a class="<?php if($p=='contact'){echo 'active';} ?>" href="?p=contact"><i class="fa-solid fa-address-book"></i>Contact</a></li>
+        <li><a class="<?php if($p=='serviceList' || $p=='addService'){echo 'active';} ?>" href="?p=serviceList"><i class="fa-solid fa-list"></i>Services</a></li>
+        <li><a class="<?php if($p=='setting'){echo 'active';} ?>" href="?p=setting"><i class="fa-solid fa-gear"></i>Paramètres</a></li>
+    </ul>
+</div>

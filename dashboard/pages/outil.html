@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lawcorp - Dashboard | Leads</title>
+    <link rel="shortcut icon" href="../../favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../public/css/admin.css">
+</head>
+<body>
+    <div class="preloader">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
+        
+    <div class="container-fluid">
+    <?php include 'aside.html'; ?>
+    <main>
+        <?php
+        $alert = "";
+        if(isset($_GET['p']) && $_GET['p'] == 'banner' && $_GET['action'] == 'ras'){$alert="Les informations ont été mises à jour.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'addService' && $_GET['action'] == 'ras'){$alert="Les informations ont été mises à jour.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'accueil' && $_GET['action'] == 'ras'){$alert="Les informations ont été mises à jour.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'presentation' && $_GET['action'] == 'ras'){$alert="Les informations ont été mises à jour.";} 
+        if(isset($_GET['p']) && $_GET['p'] == 'setting' && $_GET['action'] == 'ras'){$alert="Les informations ont été mises à jour.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'lead' && $_GET['action'] == 'success'){$alert="Lead supprimé avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'banner' && $_GET['action'] == 'extension'){$alert="L'extension du fichier n'est pas pris en charge.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'banner' && $_GET['action'] == 'taille'){$alert="L'image est trop lourde.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'banner' && $_GET['action'] == 'success'){$alert="Bandeau ajouté avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'addService' && $_GET['action'] == 'success'){$alert="Service ajouté avec succès";}
+        if(isset($_GET['p']) && $_GET['p'] == 'addService' && $_GET['action'] == 'delsuccess'){$alert="Service supprimé avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'actu' && $_GET['action'] == 'delsuccess'){$alert="L'article a été supprimé avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'galery' && $_GET['action'] == 'ras'){$alert="Image ajoutée avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'updateArticle' && $_GET['action'] == 'ras'){$alert="L'article a été mis à jour avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'updateArticle' && $_GET['action'] == 'success' && $_GET['id'] == 'add'){$alert="L'article a été ajouté avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'actu' && $_GET['action'] == 'success' && $_GET['opt'] == 'category'){$alert="La catégorie a été ajoutée avec succès.";}
+        if(isset($_GET['p']) && $_GET['p'] == 'actu' && $_GET['action'] == 'delsuccess' && $_GET['opt'] == 'category'){$alert="La catégorie a été supprimée avec succès.";}
+        
+        if(!empty($alert)){ ?>
+        <div class="alerte"><?= $alert ?> <a class="fermer"><i class="fa-solid fa-xmark"></i></a></div><?php
+        }
+        include 'main.html'; 
+        ?>
+    </main>
+    </div>
+    <script>
+        let fermer = document.querySelector('.fermer');
+        fermer.addEventListener('click',()=>{
+            document.querySelector('.alerte').classList.add('hidden');
+        })
+    </script>
+    <script src="https://cdn.tiny.cloud/1/5ld0qnfhpkpso3i5ls4n3czm1jk2fhiv80gm4o6feeuh14ku/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script> 
+    <script>
+    tinymce.init({
+        selector: 'textarea#premiumskinsandicons-fluent',
+        language: 'fr_FR',  // Spécifiez la langue française
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat | code',
+    });
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../public/js/admin.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+       jQuery(document).ready(function($){
+        $('#leads').DataTable({
+            language: {
+            lengthMenu: "Afficher  _MENU_ par page",
+            info: "Page _PAGE_ sur _PAGES_",
+            search: "Recherche  ",
+            paginate: {
+                first:      "Premier",
+                last:       "Dernier",
+                next:       "Suivant",
+                previous:   "Précédent"
+            }
+            }
+        });
+        $('#services').DataTable({
+            language: {
+            lengthMenu: "Afficher  _MENU_ par page",
+            info: "Page _PAGE_ sur _PAGES_",
+            search: "Recherche  ",
+            paginate: {
+                first:      "Premier",
+                last:       "Dernier",
+                next:       "Suivant",
+                previous:   "Précédent"
+            }
+            }
+        });
+    });
+    </script>
+</body>
+</html>

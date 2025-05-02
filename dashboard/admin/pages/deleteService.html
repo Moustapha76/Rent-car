@@ -1,0 +1,9 @@
+<?php
+    // Tip : PHP don't show sql error
+    include "connexion.html";
+    $id = strip_tags($_GET['ids']);
+    $req = $bdd->prepare("DELETE FROM service WHERE id = ?");
+    $req->execute(array($id));
+    
+    header("location:outil.html?p=serviceList&action=delsuccess");
+?>

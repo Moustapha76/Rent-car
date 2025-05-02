@@ -1,0 +1,67 @@
+<?php
+        include 'connexion.html';
+        $req = $bdd->query('SELECT * FROM banner');
+        $bannerInfos = $req->fetchAll();
+        // $slogan = $bannerInfos[0]['slogan'];
+        // $description = $bannerInfos[0]['description'];
+        // $imgUrl = $bannerInfos[0]['imgBanner'];
+        // echo $id.'<br/>'.$title.'<br/>'.$subtitle.'<br/>'.$content.'<br/>'.$img; 
+
+        $pageID = 1;
+        $pages = ['Accueil','Presentation','Services','Galerie','Contact'];
+?>
+<section id="banner">
+    <ul>
+        <li><a class="<?php if($_GET['pageID']=='1'){echo 'active';} ?>" href="?p=banner&pageID=1">Accueil</a></li>
+        <li><a class="<?php if($_GET['pageID']=='2'){echo 'active';} ?>" href="?p=banner&pageID=2">Présentation</a></li>
+        <li><a class="<?php if($_GET['pageID']=='3'){echo 'active';} ?>" href="?p=banner&pageID=3">Services</a></li>
+        <li><a class="<?php if($_GET['pageID']=='4'){echo 'active';} ?>" href="?p=banner&pageID=4">Galerie</a></li>
+        <li><a class="<?php if($_GET['pageID']=='5'){echo 'active';} ?>" href="?p=banner&pageID=5">Contact</a></li>
+    </ul>
+    <?php foreach($bannerInfos as $bannerInfo){ 
+    if($_GET['pageID'] == $bannerInfo['id']){
+    ?>
+    <div class="addBanner bloc-contain">
+        <h4 class="title"><?= $pages[$pageID - 1] ?></h4><br>
+        <form action="saveBanner.html?pageID=<?php echo $pageID ;?>" method="POST" enctype="multipart/form-data">
+            <div class="infos">
+                <div class="group-addon">
+                    <div class="input-group">
+                        <label for="slogan">Titre</label>
+                        <input type="text" id="slogan" name="slogan" value="<?php echo $bannerInfo['slogan']; ?>" class="slogan"/>
+                    </div>
+                    <div class="input-group">
+                        <label for="description">Sous-titre</label>
+                        <textarea id="description" rows="5" cols="20" name="description"><?php echo $bannerInfo['description']; ?></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Sauvegarder</button>
+            </div>
+            <div class="upload-box">
+                <div class="upload-img">
+                    <img class="preview" src="<?php echo $bannerInfo['imgBanner']; ?>" alt="image de l'article">
+                </div>
+                <label for="imgBanner" class="btn btn-primary">Modifier l'image</label>
+                <input type="file" class="imgBanner" id="imgBanner" name="imgBanner"/>
+            </div>
+        </form>
+    </div>
+    <?php 
+    }
+    $pageID++;
+} ?>
+</section>
+<script>
+var imgBanners = document.querySelectorAll(".imgBanner");
+imgBanners.forEach(imgBanner => {
+    imgBanner.addEventListener('change', function(e) {
+        if (e.target.files.length > 0) {
+            const url = URL.createObjectURL(e.target.files[0]);
+            // var preview = document.querySelector(".preview");
+            let preview = this.parentElement.children[0].children[0]
+            console.log(preview)
+            preview.src = url;
+    }
+    })    
+});
+</script>
