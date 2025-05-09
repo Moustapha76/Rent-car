@@ -21,6 +21,20 @@ document.addEventListener('DOMContentLoaded', function(){
   }) 
 
 
+  var bannerSwiper = new Swiper(".bannerSwiper", {
+      slidesPerView: 1,
+      autoplay: false,
+      speed: 1000,
+      loop: true,
+      spaceBetween: 50, //init: false,
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      breakpoints: {
+          1300: { slidesPerView: 2},
+          991: { slidesPerView: 1},
+          640: { slidesPerView: 1},
+          320: { slidesPerView: 1}
+      }
+  });
   var swiperService = new Swiper(".services-list", {
       slidesPerView: 3,
       autoplay: false,

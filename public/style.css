@@ -24,6 +24,28 @@
     scroll-behavior: smooth;
 }
 
+header {
+    height: 100vh;
+}
+
+.bannerSwiper {}
+
+.bannerSwiper .swiper-button-next {
+    right: 2%;
+}
+
+.bannerSwiper .swiper-button-next,.bannerSwiper .swiper-button-prev {
+    position: absolute;
+    top: 50vh;
+    width: 70px;
+    height: 70px;
+    font-size: 20px;
+}
+
+.bannerSwiper .swiper-button-prev {
+    left: 2%;
+}
+
 .img-group {
     display: flex;
 }
@@ -470,7 +492,7 @@ section.contact .container form button.btn:hover {
     padding: 10px 10% 10px;
     z-index: 8;
     box-shadow: 2px 2px 50px #00000047;
-    background: var(--transparent);
+    background: var(--black);
     backdrop-filter: blur(100px);
 }
 
@@ -517,14 +539,13 @@ header ul li a:hover,header ul li a.active {
     color: var(--light);
 }
 
-div.infos {
+header div.infos {
     display: flex;
     justify-content: space-between;
     padding: 10px 10%;
     gap: 15px;
     border-bottom: 1px solid #ffffff24;
     margin: 0 10%;
-    background: var(--black);
     position: fixed;
     width: 100%;
     margin: 0;
@@ -584,13 +605,7 @@ div.infos .item a {
     color: var(--white);
 }
 
-.banner {
-    grid-template-columns: 1fr 1.5fr;
-    grid-gap: 0%;
-    padding: 12% 10% 9%;
-    background: url(../images/bg.jpg);
-    background-size: contain;
-}
+.banner {display: flex;justify-content: flex-start;align-items: center;height: 100vh;padding: 0 10%;}
 
 .banner .slogan {
     display: flex;
@@ -598,10 +613,12 @@ div.infos .item a {
     justify-content: center;
     align-items: flex-start;
     gap: 20px;
+    z-index: 1;
+    padding-top: 6em;
 }
 
 .banner .slogan h1 {
-    font-size: 5em;
+    font-size: 7em;
     letter-spacing: 2px;
     line-height: 1.5;
     font-weight: 100;
@@ -619,7 +636,7 @@ div.infos .item a {
 }
 
 .banner .slogan p {
-    font-size: 18px;
+    font-size: 2.5vh;
     font-weight: 100;
     margin-bottom: 0em;
     letter-spacing: 1.5px;
@@ -627,9 +644,13 @@ div.infos .item a {
 }
 
 .banner .img-banner {
-    height: 550px;
-    position: relative;
-    z-index: 2;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .banner .img-banner span {
@@ -695,21 +716,16 @@ div.infos .item a {
 
 .banner .img-banner:before {
     content: "";
+    inset: 0;
+    background: linear-gradient(90deg, black, #000000c9, #00000040, #00000069, #0000009c, #000000b3);
+    z-index: 2;
     position: absolute;
-    width: 55%;
-    height: 100%;
-    z-index: -1;
-    top: 0%;
-    right: 0%;
-    opacity: 1;
-    /* border: 1px solid #f6bb145e; */
-    background: #ffffff17;
 }
 
 .banner .img-banner img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
 }
 
@@ -968,6 +984,7 @@ main section.about .jumbotron {
     border: 1px solid #ffffff29;
     line-height: 1.7;
     font-size: 15px;
+    border-radius: var(--border-radius);
 }
 
 main section.about .jumbotron:nth-child(2) {
@@ -1004,6 +1021,7 @@ main section.about .jumbotron:nth-child(2) span {
     box-shadow: 10px 10px 1000px #00000038;
     position: relative;
     overflow: hidden;
+    border-radius: var(--border-radius);
 }
 
 .img-group .img-bloc span {
@@ -2281,7 +2299,7 @@ header .btn-rs {
 
 .btn-rs span:hover {
     background: var(--light);
-    color: var(--dark);
+    color: var(--black);
 }
 
 footer .bloc span {
