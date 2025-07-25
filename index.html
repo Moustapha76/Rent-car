@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prestige Way - Accueil</title>
+    <title>Lansar Auto - Accueil</title>
     <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./public/swiper.css">
     <!--AOS STYLE-->
@@ -13,21 +13,10 @@
 </head>
 <body class="body-index">
     <div class="preloader">
-        <!-- <img src="./images/loader.gif" alt="loader"/> -->
-        <div class="txt-loading">
-			<span data-text-preloader="P" class="letters-loading"> P</span>
-			<span data-text-preloader="R" class="letters-loading"> R</span>
-			<span data-text-preloader="E" class="letters-loading"> E</span>
-			<span data-text-preloader="S" class="letters-loading"> S</span>
-			<span data-text-preloader="T" class="letters-loading"> T</span>
-			<span data-text-preloader="I" class="letters-loading"> I</span>
-			<span data-text-preloader="G" class="letters-loading"> G</span>
-			<span data-text-preloader="E" class="letters-loading"> E</span>
-			<span data-text-preloader=" " class="letters-loading"> </span>
-			<span data-text-preloader="W" class="letters-loading"> W</span>
-			<span data-text-preloader="A" class="letters-loading"> A</span>
-			<span data-text-preloader="Y" class="letters-loading"> Y</span>
-		</div>
+        <div class="loader-content">
+            <img src="./images/logo.png" alt="logo du site">
+            <span>Chargement...</span>
+        </div>
     </div>
     <header class="page-interne">
         <div class="infos">
@@ -45,7 +34,7 @@
             </div>
         </div>
         <div class="navbar flex">
-            <a href="#" class="logo"><b>Prestige</b>way</a>
+            <a href="index.html" class="logo"><img src="./images/logo.png" alt="logo du site"></a>
             <nav>
                 <span class="burger"><i class="fa-solid fa-bars"></i></span>
                 <ul class="flex">
@@ -55,17 +44,17 @@
                     <li><a href="./servicelist.html">Nos services</a></li>
                     <li><a href="./contact.html">Contact</a></li>
                 </ul>
-            </nav>
-        </div>
-        <div class="banner grid">
-            <div class="slogan" data-aos="fade-up" data-aos-duration="1500">
-                <h1><strong>Prestige</strong> way</h1>
-                <p><strong>L'élégance</strong> du voyage, le <strong>luxe</strong> du confort. <br>Vivez le summum du luxe et du service de VTC. </p>
                 <div class="btn-rs">
                     <span><i class="fa-brands fa-facebook-f"></i></span>
                     <span><i class="fa-brands fa-twitter"></i></span>
                     <span><i class="fa-brands fa-instagram"></i></span>
                 </div>
+            </nav>
+        </div>
+        <div class="banner grid">
+            <div class="slogan" data-aos="fade-up" data-aos-duration="1500">
+                <h1><strong>Lansar</strong> Auto</h1>
+                <p><strong>L'élégance</strong> du voyage, le <strong>luxe</strong> du confort. <br>Vivez le summum du luxe et du service de VTC. </p>
                 <div class="btn-group">
                     <a href="./contact.html" class="btn">Prendre RDV</a>
                     <a href="./servicelist.html" class="btn">Nos services</a>
@@ -90,8 +79,45 @@
         </div>
     </header>
     <main>
+        <section class="about grid">
+            <div class="img-group">
+                <div class="img-bloc flex" data-aos="fade-up" data-aos-duration="1500">
+                    <img src="./images/villes/dakar.jpg" alt="team">
+                    <span>Dakar</span>
+                </div>
+                <div class="img-bloc flex" data-aos="fade-up" data-aos-duration="1500">
+                    <img src="./images/villes/thies.jpg" alt="team">
+                    <span>Thiès</span>
+                </div>
+                <div class="img-bloc flex" data-aos="fade-up" data-aos-duration="1500">
+                    <img src="./images/villes/kaolack.jpg" alt="team">
+                    <span>Kaolack</span>
+                </div>
+            </div>
+            <div class="text-bloc flex" data-aos="fade-up" data-aos-duration="1500">
+                <h2 data-aos="zoom-out" data-aos-duration="1500" class="title"><span class="subtitle">Expérimentez le luxe avec la meilleure compagnie VTC</span></h2>
+               <div class="text-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, sit sed. Praesentium facere cupiditate ipsam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, sit sed. Praesentium facere cupiditate ipsam.</p>
+                <a href="" class="btn">Voir tout</a>
+               </div>
+                <div class="jumbotron">
+                    <!-- <span><i class="fa-solid fa-eye"></i></span> -->
+                    <div class="description">
+                        <h3>Notre vision</h3>
+                        <p>L'objectif principal est de fournir les solutions de voyages les plus adaptées.</p>
+                    </div>
+                </div>
+                <div class="jumbotron">
+                    <!-- <span><i class="fa-solid fa-bullseye"></i></span> -->
+                    <div class="description">
+                        <h3>Notre mission</h3>
+                        <p>Des services de transport offerts avec soin et de la plus haute qualité</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="atout">
-            <h2 class="title" data-aos="zoom-out" data-aos-duration="1500"><span class="subtitle">Pourquoi choisir PRESTIGE WAY</span></h2>
+            <!-- <h2 class="title" data-aos="zoom-out" data-aos-duration="1500"><span class="subtitle">Pourquoi choisir Lansar Auto</span></h2> -->
             <div class="container">
                 <div class="atout-card" data-aos="fade-up" data-aos-duration="1500">
                     <span><i class="fa-solid fa-star"></i></span>
@@ -111,53 +137,12 @@
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
                     <!-- <a href="#" class="seemore">Voir plus <sup>+</sup></a> -->
                 </div>
-            </div>
-        </section>
-        <section class="about grid">
-            <div class="img-group">
-                <div class="img-bloc flex" data-aos="fade-up" data-aos-duration="1500">
-                    <img src="./images/villes/dakar.jpg" alt="team">
-                    <span>Dakar</span>
+                 <div class="atout-card" data-aos="fade-up" data-aos-duration="1500">
+                    <span><i class="fa-solid fa-euro"></i></span>
+                    <h3>Prix imbattables</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                    <!-- <a href="#" class="seemore">Voir plus <sup>+</sup></a> -->
                 </div>
-                <div class="img-bloc flex" data-aos="fade-up" data-aos-duration="1500">
-                    <img src="./images/villes/thies.jpg" alt="team">
-                    <span>Thiès</span>
-                </div>
-                <div class="img-bloc flex" data-aos="fade-up" data-aos-duration="1500">
-                    <img src="./images/villes/kaolack.jpg" alt="team">
-                    <span>Kaolack</span>
-                </div>
-            </div>
-            <div class="text-bloc flex" data-aos="fade-up" data-aos-duration="1500">
-                <h2 data-aos="zoom-out" data-aos-duration="1500" class="title"><span class="subtitle">Expérimentez le luxe avec la meilleure compagnie VTC</span></h2>
-               <div class="text-content">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, sit sed. Praesentium facere cupiditate ipsam.</p>
-                <a href="" class="btn">Voir tout</a>
-               </div>
-                <div class="jumbotron">
-                    <span><i class="fa-solid fa-eye"></i></span>
-                    <div class="description">
-                        <h3>Notre vision</h3>
-                        <p>L'objectif principal est de fournir les solutions de voyages les plus adaptées.</p>
-                    </div>
-                </div>
-                <div class="jumbotron">
-                    <span><i class="fa-solid fa-bullseye"></i></span>
-                    <div class="description">
-                        <h3>Notre mission</h3>
-                        <p>Des services de transport offerts avec soin et de la plus haute qualité</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="partners bg-light">
-            <h2 class="title" data-aos="zoom-out" data-aos-duration="1500"><span class="subtitle">Nos marques</span>Le comfort avec des marques de luxe</h2>
-            <div class="container">
-                <div class="img" data-aos="fade-up" data-aos-duration="1500"><img src="./images/marques/1.png" alt="marque"></div>
-                <div class="img" data-aos="fade-up" data-aos-duration="1500"><img src="./images/marques/2.png" alt="marque"></div>
-                <div class="img" data-aos="fade-up" data-aos-duration="1500"><img src="./images/marques/3.png" alt="marque"></div>
-                <div class="img" data-aos="fade-up" data-aos-duration="1500"><img src="./images/marques/4.png" alt="marque"></div>
-                <div class="img" data-aos="fade-up" data-aos-duration="1500"><img src="./images/marques/5.png" alt="marque"></div>
             </div>
         </section>
         <section class="services">
@@ -459,34 +444,34 @@
             <div class="container">
                 <div class="item-new" data-aos="fade-up" data-aos-duration="1500">
                     <div class="img-new">
-                        <img src="./images/pic-1.jpg" alt="">
+                        <img src="./images/benz.png" alt="">
                     </div>
                     <div class="new-body">
                         <span class="date"><i class="fa-solid fa-calendar-days"></i> 13 Mai, 2025</span>
                         <h3 class="new-title">L’Expérience Ultime du Road Trip de Luxe au Sénégal</h3>
-                        <p>Le Sénégal, avec ses paysages variés et son climat agréable, est une destination idéale pour un road trip en voiture de luxe</p>
+                        <!-- <p>Le Sénégal, avec ses paysages variés et son climat agréable, est une destination idéale pour un road trip en voiture de luxe</p> -->
                         <a href="./article.html" class="seemore">Lire +</a>
                     </div>
                 </div>
                 <div class="item-new" data-aos="fade-up" data-aos-duration="1500">
                     <div class="img-new">
-                        <img src="./images/pic-2.jpg" alt="">
+                        <img src="./images/hummer.png" alt="">
                     </div>
                     <div class="new-body">
                         <span class="date"><i class="fa-solid fa-calendar-days"></i> 03 Dec, 2025</span>
                         <h3 class="new-title">Dakar en Supercar : Une Expérience Inoubliable</h3>
-                        <p>Dakar, ville dynamique et cosmopolite, est le terrain de jeu parfait pour les amateurs de voitures de luxe.</p>
+                        <!-- <p>Dakar, ville dynamique et cosmopolite, est le terrain de jeu parfait pour les amateurs de voitures de luxe.</p> -->
                         <a href="./article.html" class="seemore">Lire +</a>
                     </div>
                 </div>
                 <div class="item-new" data-aos="fade-up" data-aos-duration="1500">
                     <div class="img-new">
-                        <img src="./images/pic-3.jpg" alt="">
+                        <img src="./images/h2.png" alt="">
                     </div>
                     <div class="new-body">
                         <span class="date"><i class="fa-solid fa-calendar-days"></i> 13 Dec, 2024</span>
                         <h3 class="new-title">Safari de Luxe en 4x4 : À la Découverte du Sénégal Sauvage</h3>
-                        <p>Le Sénégal ne se limite pas à ses plages et à Dakar. Pour les amateurs d’aventure et de luxe, un safari en 4x4 haut de gamme...</p>
+                        <!-- <p>Le Sénégal ne se limite pas à ses plages et à Dakar. Pour les amateurs d’aventure et de luxe, un safari en 4x4 haut de gamme...</p> -->
                         <a href="./article.html" class="seemore">Lire +</a>
                     </div>
                 </div>
@@ -495,8 +480,17 @@
         <section class="map" data-aos="fade-up" data-aos-duration="1500">
             <h2 class="title"><span class="subtitle">Où nous trouver ?</span></h2>
             <div class="zone" data-aos="fade-up" data-aos-duration="1500">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.073013073073!2d3.876715314266073!3d43.61076972238347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b5f6f4b3b3b1e1%3A0x1
-                1b3b1e1b3b1b3b1!2sMontpellier!5e0!3m2!1sfr!2sfr!4v1633663666827!5m2!1sfr!2sfr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.582416848894!2d-17.4638176!3d14.7361853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec10dc31ea12267%3A0xdfdf150467df2ad5!2sLANSAR%20auto!5e0!3m2!1sfr!2ssn!4v1752138837619!5m2!1sfr!2ssn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+        <section class="partners bg-light">
+            <!-- <h2 class="title" data-aos="zoom-out" data-aos-duration="1500"><span class="subtitle">Nos marques</span>Le comfort avec des marques de luxe</h2> -->
+            <div class="container">
+                <div class="img" data-aos="fade-up" data-aos-duration="1500"><img src="./images/partners/01.png" alt="marque"></div>
+                <div class="img" data-aos="fade-up" data-aos-duration="1500"><img src="./images/partners/02.png" alt="marque"></div>
+                <div class="img" data-aos="fade-up" data-aos-duration="1500"><img src="./images/partners/03.png" alt="marque"></div>
+                <div class="img" data-aos="fade-up" data-aos-duration="1500"><img src="./images/partners/04.png" alt="marque"></div>
+                <div class="img" data-aos="fade-up" data-aos-duration="1500"><img src="./images/partners/05.png" alt="marque"></div>
             </div>
         </section>
     </main>
@@ -526,7 +520,7 @@
                 <span>Ferme le Dimanche</span>
             </div>
             <div class="bloc" data-aos="fade-up" data-aos-duration="1500">
-                <a href="#" class="logo"><b>Prestige</b>way</a>
+                <a href="index.html" class="logo"><img src="./images/logo.png" alt="logo du site"></a>
                 <span>Entreprise de VTC avec des voitures de luxe partout dans le Sénégal.</span>
                 <div class="btn-rs">
                     <span><i class="fa-brands fa-facebook-f"></i></span>
